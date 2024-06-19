@@ -33,6 +33,21 @@
 -- e. App Trader would prefer to work with apps that are available in both the App Store and the Play Store since they can market both for the same $1000 per month.
 
 
+-- working backwards, eliminate any games that are not in both stores
+-- build a table that has 'name', 'rating_count', 'rating' to add a column called 'longevity' using the formula above to calculate outcomes
+	-- when sorting by 'rating_count', remember to use cast(rating_count as integer)
+-- start breaking down a presentation format using my Canva Pro account, incorporate at least one fact outside the given data to show thorough research skills
+
+
+select name, install_count, cast(price as money)
+from play_store_apps
+order by install_count desc -- so some of Candy Crush thru Viber Messenger Saga might be in the top 10
+
+
+
+
+
+
 
 
 
