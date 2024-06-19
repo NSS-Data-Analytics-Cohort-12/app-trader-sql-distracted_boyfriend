@@ -17,5 +17,5 @@
 -- end as purchase_price
 -- from combined_apps
 
-select distinct(genres) from play_store_apps
+select distinct(genres), price from play_store_apps
 where genres like '%;Education%'
