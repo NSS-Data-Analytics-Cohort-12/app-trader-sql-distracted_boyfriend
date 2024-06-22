@@ -170,3 +170,16 @@ On google.name = apple.name
 order by apple.rating desc,google.rating desc)
 Order By avg_rating DESC, apple_review DESC, google_install DESC
 limit 10;
+
+-- select
+-- 			distinct a.name,
+-- 			-- p.name,
+-- 			greatest(
+-- 				a.price, 
+-- 				CAST( TRIM( REPLACE(p.price, '$', '') ) AS numeric )
+-- 			) as cleanedPrice
+-- --			1 + ( 2 *(round(a.rating + p.rating) / 2 ) ) as lifespan,
+-- --			1000 * 12 * ( 1 + ( 2 *( round(a.rating + p.rating) / 2 ) ) ) as marketingPrice
+-- 		from app_store_apps a
+-- 		inner join play_store_apps p
+-- 		on lower(a.name) = lower(p.name)
