@@ -39,9 +39,46 @@
 -- start breaking down a presentation format using my Canva Pro account, incorporate at least one fact outside the given data to show thorough research skills
 
 
-select name, install_count, cast(price as money)
-from play_store_apps
-order by install_count desc -- so some of Candy Crush thru Viber Messenger Saga might be in the top 10
+-- select name, install_count, cast(price as money)
+-- from play_store_apps
+-- order by install_count desc
+
+
+select distinct 
+	name, 
+	apple.rating as apple_rating, android.rating as android_rating, 
+	cast(apple.price as money) as apple_price, cast(android.price as money) as android_price,
+	round(round((android.rating + apple.rating), 0) / 2, 1) as avg_rating,
+	cast(apple.review_count as integer) as apple_review_count
+from play_store_apps as android
+join app_store_apps as apple
+using(name)
+where apple.rating >= 4.5
+	and apple.price < 1
+order by avg_rating desc, apple_review_count desc
+
+
+
+-- BUILD A SUBQUERY TO ADD BOTH RATINGS AND AVG THEM BEFORE DISPLAYING THEM AS AVG_RATING, ROUND TO THE NEAREST 0.5, THEN BUILD A APP_LIFESPAN COLUMN WHERE 
+
+-- select distinct
+-- 	name,
+-- 	round(round((android.rating + apple.rating), 0) / 2, 1) as avg_rating,
+-- 	case when avg_rating = 5.0 then '11 years'
+-- 		 when avg_rating = 4.5 then '10 years'
+-- 		 else null end as app_lifespan
+-- from play_store_apps as android
+-- join app_store_apps as apple
+-- using(name)
+
+
+
+
+
+-- INITIAL PURCHASE PRICE -> CREATE PURCHASE PRICE COLUMN?
+-- $10K/MONTH (BECAUSE BOTH STORES ONLY) - $1K/MONTH (BOTH STORES, FOR MKTG) = 'PROFITABILITY' COLUMN?
+-- RATING -> FILTER MIN RATING? FILTER MIN REVIEW_COUNT?
+-- ONLY EIGHT 5-STAR RATINGS ON APPLE...
 
 
 
